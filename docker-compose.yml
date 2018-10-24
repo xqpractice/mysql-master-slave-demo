@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+  mysql-master:
+    image: mysql:5.7
+    volumes:
+      - ./data/master/mysql:/var/lib/mysql
+      - ./config/master/my.cnf:/etc/mysql/conf.d/my.cnf
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=person
+      - MYSQL_USER=master
+      - MYSQL_PASSWORD=master
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+  mysql-slave1:
+    image: mysql:5.7
+    volumes:
+      - ./data/slave1/mysql:/var/lib/mysql
+      - ./config/slave1/my.cnf:/etc/mysql/conf.d/my.cnf
+    ports:
+      - "13306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=person
+      - MYSQL_USER=slave
+      - MYSQL_PASSWORD=slave
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+  mysql-slave2:
+    image: mysql:5.7
+    volumes:
+      - ./data/slave2/mysql:/var/lib/mysql
+      - ./config/slave2/my.cnf:/etc/mysql/conf.d/my.cnf
+    ports:
+      - "23306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=person
+      - MYSQL_USER=slave
+      - MYSQL_PASSWORD=slave
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
