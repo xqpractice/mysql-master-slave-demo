@@ -1,5 +1,5 @@
-# mysql-cluster-demo
-Mysql Cluster Demo
+# mysql-master-slave-demo
+Mysql Master-Slave Demo
 
 
 ## Init sql in master
